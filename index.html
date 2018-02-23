@@ -36,22 +36,22 @@
 
   <body>
 
-    <div class="reveal">
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
+<div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
 <!-- ####################################################################  -->
-        <section id="intro" class="aboutme">
-          <img src='images/index.jpg'
-               style="background:none; border:none; box-shadow:none; width: 30%;">
-          <h1></h1>
-          <h1></h1>
+    <section id="intro" class="aboutme">
+      <img src='images/index.jpg'
+           style="background:none; border:none; box-shadow:none; width: 30%;">
+      <h1></h1>
+      <h1></h1>
 
-          <h3>What's new in Python 3.7</h3>
-          <p>Misha Behersky</p>
-          <p><a href="http://github.com/bmwant">https://github.com/bmwant</a></p>
-          <p>&nbsp;</p>
-          <p>Kyiv.py #23</p>
-        </section>
+      <h3>What's new in Python 3.7</h3>
+      <p>Misha Behersky</p>
+      <p><a href="http://github.com/bmwant">https://github.com/bmwant</a></p>
+      <p>&nbsp;</p>
+      <p>Kyiv.py #23</p>
+    </section>
 <!-- ####################################################################  -->
         <section id="poll">
           <h5>About me</h5>
@@ -67,7 +67,7 @@
           </ul>
         </section>
 <!-- ####################################################################  -->
-      <section id="">
+      <section>
         <h5>3.7.0 schedule</h5>
           <p>&nbsp;</p>
           <div class="columns">
@@ -98,36 +98,34 @@
           </div>
         </section>
 <!-- ####################################################################  -->
-        <section>
-          <h6>japronto-jinja2</h6>
-          <div>
-            <img src='images/coincidence.jpg' height="400px">
-          </div>
-          <ul>
-            <li>aiohttp-jinja2</li>
-            <li>cookiecutter</li>
-          </ul>
-        </section>
+    <section>
+      <h5>Installation</h5>
+      <p><a href="https://www.python.org/downloads/release/python-370b1/">Download</a></p>
+      <pre style="width: 100%;"><code data-trim data-noescape>
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0b1.tgz
+tar -xvf Python-3.7.0b1.tgz
+[sudo] apt-get install build-essential zlib1g-dev libreadline-dev libssl-dev openssl libffi-dev
+cd Python-3.7.0b1/
+./configure
+make
+[sudo] make install
+      </code></pre>
+    </section>
 <!-- ####################################################################  -->
-        <section>
-          <h6>Example</h6>
-            <pre style="width: 100%;"><code data-trim data-noescape>
-import jinja2
-import japronto_jinja2
-from japronto import Application
+    <section>
+      <h5>voilà</h5>
+      <pre style="width: 100%;"><code data-trim data-noescape>
+$ pip3.7 --version
+pip 9.0.1 from /usr/local/lib/python3.7/site-packages (python 3.7)
 
-@japronto_jinja2.template('index.html')
-def index(request):
-    context = {'first_name': 'Ja', 'second_name': 'Pronto'}
-    return context
+$ python3.7 --version
+Python 3.7.0b1
 
-app = Application()
-japronto_jinja2.setup(app,
-                      loader=jinja2.FileSystemLoader('templates'))
-app.router.add_route('/', index)
-app.run(debug=True)
-            </code></pre>
-        </section>
+$ python3.7 -c "import sys; print(f'{sys.version}')"
+3.7.0b1 (default, Feb 24 2018, 08:35:50)
+[GCC 5.4.0 20160609]
+      </code></pre>
+    </section>
 <!-- ####################################################################  -->
         <section>
           <h6>Some libs</h6>
@@ -202,7 +200,8 @@ app.run(debug=True)
         progress: true,
         history: true,
         center: true,
-
+        width: '90%',
+        height: '80%',
         transition: 'slide', // none/fade/slide/convex/concave/zoom
 
         // Optional reveal.js plugins
