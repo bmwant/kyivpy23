@@ -7,3 +7,4 @@ css/reveal.min.css
 js/reveal.min.js
 target
 .idea/
+__pycache__/
