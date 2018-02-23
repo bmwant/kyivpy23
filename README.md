@@ -1,3 +1,9 @@
 ## How to write open source at work
 
-© Misha Behersky, Kyiv.py 20, May 2017
+*@bmwant*
+
+[Misha Behersky](http://bmwlog.pp.ua/),
+ 
+Kyiv.py #23
+
+February 2018
