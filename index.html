@@ -39,7 +39,7 @@
   <div class="slides">
 <!-- ####################################################################  -->
     <section id="intro" class="aboutme">
-      <img src='images/index.jpg'
+      <img src='images/kp23_04.jpg'
            style="background:none; border:none; box-shadow:none; width: 30%;">
       <h1></h1>
       <h1></h1>
@@ -51,20 +51,6 @@
       <p>Kyiv.py #23</p>
     </section>
 <!-- ####################################################################  -->
-    <section id="poll">
-      <h5>About me</h5>
-      <p>&nbsp;</p>
-      <div>
-        <img src='images/datarobot.png'>
-      </div>
-      <p>&nbsp;</p>
-      <ul>
-          <li>some experience with Python</li>
-          <li>work at DataRobot for 2+ months</li>
-          <li>gte 1 open source projects created</li>
-      </ul>
-    </section>
-<!-- ####################################################################  -->
     <section>
       <h5>3.7.0 schedule</h5>
         <p>&nbsp;</p>
@@ -73,6 +59,35 @@
             <img src='images/kp23_02.png'>
         </div>
         <p>&nbsp;</p>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>Installation</h5>
+      <p><a href="https://www.python.org/downloads/release/python-370b1/">Download</a></p>
+      <pre style="width: 100%;"><code data-trim data-noescape>
+wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0b1.tgz
+tar -xvf Python-3.7.0b1.tgz
+[sudo] apt-get install build-essential zlib1g-dev libreadline-dev libssl-dev openssl libffi-dev
+cd Python-3.7.0b1/
+./configure
+make
+[sudo] make install
+      </code></pre>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>voilà</h5>
+      <pre style="width: 100%;"><code data-trim data-noescape>
+$ pip3.7 --version
+pip 9.0.1 from /usr/local/lib/python3.7/site-packages (python 3.7)
+
+$ python3.7 --version
+Python 3.7.0b1
+
+$ python3.7 -c "import sys; print(f'{sys.version}')"
+3.7.0b1 (default, Feb 24 2018, 08:35:50)
+[GCC 5.4.0 20160609]
+      </code></pre>
     </section>
 <!-- ####################################################################  -->
     <section>
@@ -147,56 +162,49 @@ class B:
             <li>time.time_ns()</li>
           </ul>
         </div>
+      </div>
     </section>
 <!-- ####################################################################  -->
     <section>
-      <h5>Installation</h5>
-      <p><a href="https://www.python.org/downloads/release/python-370b1/">Download</a></p>
-      <pre style="width: 100%;"><code data-trim data-noescape>
-wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0b1.tgz
-tar -xvf Python-3.7.0b1.tgz
-[sudo] apt-get install build-essential zlib1g-dev libreadline-dev libssl-dev openssl libffi-dev
-cd Python-3.7.0b1/
-./configure
-make
-[sudo] make install
-      </code></pre>
+      <h5>PEP 557: Data Classes</h5>
+      <p>tdb.</p>
     </section>
 <!-- ####################################################################  -->
     <section>
-      <h5>voilà</h5>
-      <pre style="width: 100%;"><code data-trim data-noescape>
-$ pip3.7 --version
-pip 9.0.1 from /usr/local/lib/python3.7/site-packages (python 3.7)
+      <h5>PEP 567: Context Variables</h5>
 
-$ python3.7 --version
-Python 3.7.0b1
-
-$ python3.7 -c "import sys; print(f'{sys.version}')"
-3.7.0b1 (default, Feb 24 2018, 08:35:50)
-[GCC 5.4.0 20160609]
-      </code></pre>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>PEP 552: Hash-based pycs</h5>
+      <img src="images/kp23_05.jpg">
     </section>
 <!-- ####################################################################  -->
     <section>
       <h5>Other</h5>
       <div class="columns">
-        <div style="width: 45%; display: inline-block;">
-              <ul>
-                <li>PEP 538: Legacy C Locale Coercion</li>
-                <li>PEP 539: A New C-API for Thread-Local Storage in CPython</li>
-                <li>PEP 565: Show DeprecationWarning in __main__</li>
-              </ul>
-        </div>
-        <div style="width: 45%; display: inline-block">
-              <ul>
-                <li>responses</li>
-                <li>celery flower</li>
-                <li>pyslack</li>
-              </ul>
-        </div>
+        <ul>
+          <li>PEP 538: Legacy C Locale Coercion</li>
+          <li>PEP 539: A New C-API for Thread-Local Storage in CPython</li>
+          <li>PEP 565: Show DeprecationWarning in __main__</li>
+          <li>PEP 540: Add a new UTF-8 mode</li>
+          <li>New Development Mode: -X dev</li>
+        </ul>
       </div>
       <a href="https://docs.python.org/3.7/whatsnew/3.7.html">See more info here</a>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>And much more CPython speed improvements!</h5>
+      <div class="columns">
+        <ul>
+          <li>Calling methods faster</li>
+          <li>str.find() is faster for some characters</li>
+          <li>os.fwalk is 2x faster</li>
+          <li>Regular expressions are faster for case-insensitive matching</li>
+        </ul>
+      </div>
+      <a href="https://github.com/python/cpython/releases/tag/v3.7.0b1">Release on github</a>
     </section>
 <!-- ####################################################################  -->
     <section>
@@ -211,11 +219,8 @@ $ python3.7 -c "import sys; print(f'{sys.version}')"
     <section>
       <h6>Resources</h6>
       <ol>
-        <li><a target="_blank" href="https://medium.freecodecamp.com/million-requests-per-second-with-python-95c137af319">A million requests per second with Python</a></li>
-        <li><a target="_blank" href="https://magic.io/blog/uvloop-blazing-fast-python-networking/">uvloop: Blazing fast Python networking</a></li>
-        <li><a target="_blank" href="http://blog.kazuhooku.com/2014/11/the-internals-h2o-or-how-to-write-fast.html">The internals of picohttpparser</a></li>
-        <li><a target="_blank" href="http://libuv.org">libuv</a></li>
-        <li><a target="_blank" href="https://github.com/audreyr/cookiecutter">cookiecutter</a></li>
+        <li><a target="_blank" href="https://hackernoon.com/a-brief-tour-of-python-3-7-data-classes-22ee5e046517">A brief tour of Python 3.7 data classes</a></li>
+        <li><a target="_blank" href="https://hackernoon.com/5-speed-improvements-in-python-3-7-1b39d1581d86">5 speed improvements in Python 3.7</a></li>
       </ol>
     </section>
 <!-- ####################################################################  -->
