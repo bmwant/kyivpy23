@@ -1,9 +1,9 @@
-## How to write open source at work
+## What's new in Python 3.7
 
-*@bmwant*
+**@bmwant**
 
-[Misha Behersky](http://bmwlog.pp.ua/),
+[Misha Behersky](http://bmwlog.pp.ua/)
  
 Kyiv.py #23
 
-February 2018
+_February 2018_
