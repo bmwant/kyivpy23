@@ -40,13 +40,15 @@
 <!-- ####################################################################  -->
     <section id="intro" class="aboutme">
       <img src='images/kp23_04.jpg'
-           style="background:none; border:none; box-shadow:none; width: 30%;">
+           style="background:none; border:none; box-shadow:none; width: 40%;">
       <h1></h1>
       <h1></h1>
 
       <h3>What's new in Python 3.7</h3>
       <p>Misha Behersky</p>
       <p><a href="http://github.com/bmwant">https://github.com/bmwant</a></p>
+      <p>&nbsp;</p>
+      <p>&nbsp;</p>
       <p>&nbsp;</p>
       <p>Kyiv.py #23</p>
     </section>
@@ -167,13 +169,128 @@ class B:
 <!-- ####################################################################  -->
     <section>
       <h5>PEP 557: Data Classes</h5>
-      <p>tdb.</p>
+      <pre><code data-trim data-noescape>
+@dataclass
+class Point:
+    x: float
+    y: float
+    z: float = 0.0
+
+p = Point(1.5, 2.5)
+print(p)   # Point(x=1.5, y=2.5, z=0.0)
+      </code></pre>
+
+      <pre><code data-trim data-noescape>
+import sys
+from dataclasses import dataclass
+
+@dataclass(frozen=True)
+class ImmutableSimpleDataObject(object):
+'''
+In this case,
+__init__, __repr__, __lt__, __eq__, __gt__ will all be generated automatically.
+'''
+
+field_a: int
+field_b: str
+
+example = {ImmutableSimpleDataObject(1, 'b'), ImmutableSimpleDataObject(2, 'c')}
+print(example)
+      </code></pre>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>Data Classes. Post-Init processing. Default factory</h5>
+      <pre><code data-trim data-noescape>
+import sys
+from dataclasses import dataclass, field
+
+
+def get_argv():
+    return sys.argv[1]
+
+
+@dataclass
+class SimpleDataObject(object):
+  field_a: str
+  field_b: str = field(default_factory=get_argv)
+
+  def __post_init__(self):
+      self.field_b = self.field_b.upper()
+
+example = SimpleDataObject(field_a = 'a')
+print(example)  # Now SimpleDataObject(field_a='a', field_b='TEST')
+      </code></pre>
     </section>
 <!-- ####################################################################  -->
     <section>
       <h5>PEP 567: Context Variables</h5>
+      <pre><code data-trim data-noescape>
+import contextvars
 
+var = contextvars.ContextVar('var')
+var.set('spam')
+
+def main():
+    var.set('ham')
+
+ctx = contextvars.copy_context()
+
+# Any changes that the 'main' function makes to 'var'
+# will be contained in 'ctx'.
+ctx.run(main)
+
+print(ctx.get(var))  # ham
+print(var.get())  # spam
+      </code></pre>
     </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>Context Variables & asyncio</h5>
+      <pre><code data-trim data-noescape style="font-size: 14px; line-height: 20px">
+import asyncio
+import contextvars
+
+client_addr_var = contextvars.ContextVar('client_addr')
+
+def render_goodbye():
+    client_addr = client_addr_var.get()
+    return f'Good bye, client @ {client_addr}\n'.encode()
+
+async def handle_request(reader, writer):
+    addr = writer.transport.get_extra_info('socket').getpeername()
+    client_addr_var.set(addr)
+
+    while True:
+        line = await reader.readline()
+        print(line)
+        if not line.strip():
+            break
+        writer.write(line)
+
+    writer.write(render_goodbye())
+    writer.close()
+
+async def main():
+    srv = await asyncio.start_server(
+        handle_request, '127.0.0.1', 8081)
+
+    async with srv:
+        await srv.serve_forever()
+
+asyncio.run(main())
+      </code></pre>
+    </section>
+<!-- ####################################################################  -->
+    <section>
+      <h5>Pass context <explicitly></explicitly></h5>
+      <pre><code>
+        ctx = contexvars.Context()
+        ctx = convexvars.copy_context()
+        Loop.call_soon(), Loop.call_later(), and Loop.call_at()
+      </code></pre>
+    </section>
+
 <!-- ####################################################################  -->
     <section>
       <h5>PEP 552: Hash-based pycs</h5>
@@ -221,11 +338,13 @@ class B:
       <ol>
         <li><a target="_blank" href="https://hackernoon.com/a-brief-tour-of-python-3-7-data-classes-22ee5e046517">A brief tour of Python 3.7 data classes</a></li>
         <li><a target="_blank" href="https://hackernoon.com/5-speed-improvements-in-python-3-7-1b39d1581d86">5 speed improvements in Python 3.7</a></li>
+        <li><a target="_blank" href="https://github.com/python">Python GitHub repo</a></li>
       </ol>
     </section>
 <!-- ####################################################################  -->
     <section>
       <h2>Stay in touch | Q&A</h2>
+      <img src="images/kp23_06.png" style="height: 400px">
       <p><a href="https://twitter.com/bmwant" target="_blank">@bmwant</a></p>
       <p><a href="http://bmwlog.pp.ua/" target="_blank">bmwlog.pp.ua</a></p>
     </section>
